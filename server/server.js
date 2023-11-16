@@ -5,6 +5,7 @@ dotenv.config()
 import cors from 'cors'
 import authRoute from './routes/auth.route.js'
 import Database from './config/dbConnect.js'
+import userRoute from './routes/user.route.js'
 
 const PORT = process.env.PORT || 3500;
 
@@ -20,7 +21,9 @@ db.connect().catch((err)=>
 app.use(express.json());
 app.use(cors());
 
+app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
+
 
 app.listen(PORT,()=>{
     console.log(`Server listening to port:${PORT}`);
