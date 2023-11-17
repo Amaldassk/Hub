@@ -1,6 +1,31 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import userModel from '../models/user.model.js';
+import saveLogInfo from '../middlewares/logger/loginfo.js';
+
+
+const LOG_TYPE = {
+    SIGN_IN: "sign in",
+    LOGOUT: "logout",
+};
+
+const LEVEL = {
+    INFO: "info",
+    ERROR: "error",
+    WARB: "warn",
+}
+
+const MESSAGE = {
+    SIGN_IN_ATTEMPT: "User attempting to sign in",
+    SIGN_IN_ERROR: "Error occurred while signing in user: ",
+    INCORRECT_EMAIL: "Incorrect email",
+    INCORRECT_PASSWORD: "Incorrect password",
+    DEVICE_BLOCKED: "Sign in attempt from blocked device",
+    CONTEXT_DATA_VERIFY_ERROR: "Context data verification failed",
+    MULTIPLE_ATTEMPT_WITHOUT_VERIFY:
+      "Multiple sign in attempts detected without verifying identity.",
+    LOGOUT_SUCCESS: "User has logged out successfully",
+  };
 
 const signinUser = async(req, res, next) => {
     try{
@@ -10,6 +35,13 @@ const signinUser = async(req, res, next) => {
         });
         
         if(!existingUser){
+            await saveLogInfo(
+                req,
+                MESSAGE.INCORRECT_EMAIL,
+                LOG_TYPE.SIGN_IN,
+                LEVEL.ERROR
+              );
+
             return res.status(400).json({
                 message:"Invalid credentials",
             });
@@ -21,6 +53,13 @@ const signinUser = async(req, res, next) => {
         );
 
         if(!isPasswordCorrect){
+            await saveLogInfo(
+                req,
+                MESSAGE.INCORRECT_PASSWORD,
+                LOG_TYPE.SIGN_IN,
+                LEVEL.ERROR
+              );
+
             return res.status(400).json({
                 message:"Invalid credentials",
             });
@@ -46,6 +85,11 @@ const signinUser = async(req, res, next) => {
         // });
         // await newRefreshToken.save();
         // console.log(newRefreshToken)
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 72*60*60*1000,
+        });
+
         res.status(200).json({
             accessToken,
             refreshToken,
@@ -59,6 +103,13 @@ const signinUser = async(req, res, next) => {
             },
         });
     } catch(err){
+        await saveLogInfo(
+            req,
+            MESSAGE.SIGN_IN_ERROR + err.message,
+            LOG_TYPE.SIGN_IN,
+            LEVEL.ERROR
+          );
+
         res.status(500).json({
             message:"Something went wrong",
         });
@@ -106,4 +157,33 @@ const registerUser = async(req, res, next) => {
     }
 };
 
-export {signinUser, registerUser};
+const logout = async(req, res) => {
+    try{
+        await saveLogInfo(
+            req,
+            MESSAGE.LOGOUT_SUCCESS,
+            LOG_TYPE.LOGOUT,
+            LEVEL.INFO
+        );
+        const accessToken = req.headers.authorization?.split(' ')[1] ?? null;
+        if(accessToken){
+            await saveLogInfo(
+                null,
+                MESSAGE.LOGOUT_SUCCESS,
+                LOG_TYPE.LOGOUT,
+                LEVEL.INFO
+            );
+        }
+
+        res.status(200).json({
+            message:"Logout successful",
+        });
+    } catch(err){
+        await saveLogInfo(null, err.message, LOG_TYPE.LOGOUT, LEVEL.ERROR);
+        res.status(500).json({
+            message: "Internal server error. Please try again later.",
+          });
+    }
+}
+
+export {signinUser, registerUser, logout};
