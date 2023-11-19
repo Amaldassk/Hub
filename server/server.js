@@ -6,6 +6,7 @@ import cors from 'cors'
 import authRoute from './routes/auth.route.js'
 import Database from './config/dbConnect.js'
 import userRoute from './routes/user.route.js'
+import productRoute from './routes/product.route.js'
 
 const PORT = process.env.PORT || 3500;
 
@@ -23,7 +24,7 @@ app.use(cors());
 
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
-
+app.use('/api/product', productRoute);
 
 app.listen(PORT,()=>{
     console.log(`Server listening to port:${PORT}`);
