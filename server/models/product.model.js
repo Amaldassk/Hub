@@ -19,6 +19,9 @@ const productSchema = new mongoose.Schema({
         default:"olive green",
         required:true,
     },
+    images:{
+        type:Array,
+    },
     material:{
         type: String,
         enum:["plywood","steel"],

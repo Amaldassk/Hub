@@ -1,7 +1,6 @@
 import productModel from "../models/product.model.js"
 
 const createProduct = async(req, res) => {
-    const {id} = req.params
     try{
         const newProduct = await productModel.create(req.body);
         res.json(newProduct);
@@ -11,6 +10,7 @@ const createProduct = async(req, res) => {
 }
 
 const getProduct = async(req, res) => {
+    const id = req.params.id;
     try{
         const getAProduct = await productModel.findById(id);
         res.json(getAProduct);
