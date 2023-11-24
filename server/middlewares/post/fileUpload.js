@@ -1,8 +1,12 @@
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 function fileUpload(req, res, next){
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
     const up_folder = path.join(__dirname, "../../assets/userFiles");
 
     const storage = multer.diskStorage({
@@ -47,7 +51,7 @@ function fileUpload(req, res, next){
         }
 
         const file = req.files[0];
-        const fileUrl = `${req.protocol}://${req.get("host")}/assets/userFiles.${file.filename}`;
+        const fileUrl = `${req.protocol}://${req.get("host")}/assets/userFiles/${file.filename}`;
 
         req.file = file;
         req.fileUrl = fileUrl;

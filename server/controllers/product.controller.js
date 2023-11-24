@@ -1,10 +1,37 @@
 import productModel from "../models/product.model.js"
 
 const createProduct = async(req, res) => {
+
+    const defaultImage = 'https://raw.githubusercontent.com/Amaldassk/public_files/main/noimage.png';
+
     try{
-        const newProduct = await productModel.create(req.body);
-        res.json(newProduct);
+        const { userId, file, fileUrl, fileType } = req;
+        console.log("fileUrl",fileUrl);
+        const {productName, size, gauge, color, material, powderCoated, price} = req.body;
+
+        let newProduct = new productModel({
+            productName: productName,
+            size: size,
+            gauge: gauge,
+            color: color ? color : 'olive green',
+            images: fileUrl ? fileUrl : defaultImage,
+            material: material,
+            powderCoated: powderCoated,
+            price: price,
+        });
+        
+        await newProduct.save();
+        if(newProduct.isNew){
+            throw new Error('Failed to add new product');
+        }
+
+        res.status(201).json({
+            message:'Product added successfully'+fileUrl
+        });
+        // const newProduct = await productModel.create(req.body);
+        //res.status(201).json(newP);
     } catch(err){
+        console.log(err);
         throw new Error(err);
     }
 }
