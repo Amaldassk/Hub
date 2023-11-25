@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import ButtonLoadingSpinner from "../components/loader/ButtonLoadingSpinner";
+import { Link } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import { registerUser } from '../redux/actions/authActions';
 
 const SignUp = () => {
 
   const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [avatarError, setAvatarError] = useState(null);
   const [isConsentGiven, setIsConsentGiven] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleAvatarChange = () => {
     const file = e.target.files[0];
@@ -33,6 +39,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setLoadingText("Signing up...");
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
@@ -40,6 +47,16 @@ const SignUp = () => {
     formData.append("avatar", avatar);
     formData.append("role", "general");
     formData.append("isConsentGiven", isConsentGiven.toString());
+
+    const timeout = setTimeout(() => {
+      setLoadingText(
+        "This is taking longer than usual. Please wait while backend services are getting started."
+      );
+    }, 5000);
+
+    await dispatch(registerUser(formData));
+    setLoading(false);
+    clearTimeout(timeout);
   }
 
   return (

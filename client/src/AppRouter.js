@@ -4,10 +4,11 @@ import SignIn from './pages/SignIn'
 import PrivateRoutes from './PrivateRoutes'
 import { privateRoutes, publicRoutes } from './routes'
 import FallbackLoading from './components/loader/FallbackLoading'
+import SignUp from './pages/SignUp'
 
 const AppRouter = () => {
 
-  const userData = true;
+  const userData = false;
 
   return (
     <Suspense fallback={<FallbackLoading/>}>
@@ -22,7 +23,7 @@ const AppRouter = () => {
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
 
-        <Route path="/signin" element={<SignIn/>}/>
+        <Route path="/signin" element={<SignUp/>}/>
       </Routes>
     </Suspense>
   )

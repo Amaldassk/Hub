@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { registerUser } from "../actions/authActions";
 
 const initialState = {
     userData: null,
@@ -15,18 +16,22 @@ const initialState = {
     contextAuthError: null,
 };
 
-export const registerUser = createAsyncThunk("/", async())
 
 const authSlice = createSlice({
     name:'auth',
     initialState:initialState,
     reducers:{
-        signUp:(state, action) => {
+        logout:(state, action) => {
+
+        }
+    },
+    extraReducers:{
+        [registerUser.fulfilled]: (state, action) => {
 
         }
     }
 });
 
-export const {signUp} = authSlice.actions;
+export const {logout} = authSlice.actions;
 
 export default authSlice.reducer;

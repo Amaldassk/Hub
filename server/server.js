@@ -3,6 +3,8 @@ const app = express()
 import dotenv from 'dotenv'
 dotenv.config()
 import cors from 'cors'
+import multer from 'multer'
+const upload = multer()
 import authRoute from './routes/auth.route.js'
 import Database from './config/dbConnect.js'
 import userRoute from './routes/user.route.js'
@@ -21,6 +23,7 @@ db.connect().catch((err)=>
 
 app.use(express.json());
 app.use(cors());
+app.use(upload.none());
 
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
