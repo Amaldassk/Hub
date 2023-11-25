@@ -1,11 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { API } from "../api/utils";
+import { API, handleApiError } from "../api/utils";
 
 export const registerUser = createAsyncThunk("auth/register", async(formData)=>{
     try{
-        for(const[key, val] of formData){
-        console.log(key,val);
-        }
         localStorage.removeItem("profile");
 
         const res = await API.post("api/auth/signup", formData, {
@@ -19,5 +16,18 @@ export const registerUser = createAsyncThunk("auth/register", async(formData)=>{
             error: err.response.data.errors,
             data: null,
         };
+    }
+});
+
+export const signInUser = createAsyncThunk("auth/signin", async(formData)=>{
+    try{
+        const res = await API.post("api/auth/signin", formData, {
+            headers: {
+                "Content-Type":"application/json",
+            }
+        });
+        return res.data;
+    } catch(err){
+        return handleApiError(err);
     }
 });

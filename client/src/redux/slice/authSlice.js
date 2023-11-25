@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "../actions/authActions";
+import { createSlice, current } from "@reduxjs/toolkit";
+import { registerUser, signInUser } from "../actions/authActions";
 
 const initialState = {
     userData: null,
@@ -28,6 +28,13 @@ const authSlice = createSlice({
     extraReducers:{
         [registerUser.fulfilled]: (state, action) => {
 
+        },
+        [signInUser.fulfilled]: (state, action) => {
+            state.userData = action.payload ? action.payload.user : null;
+            state.accessToken = action.payload ? action.payload.accessToken : null;
+            state.refreshToken = action.payload ? action.payload.refreshToken : null;
+            state.signInError = null;
+            state.successMessage = action.payload ? action.payload : null;
         }
     }
 });

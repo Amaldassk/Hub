@@ -23,7 +23,8 @@ const AppRouter = () => {
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
 
-        <Route path="/signin" element={<SignUp/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/signin" element={<SignIn/>}/>
       </Routes>
     </Suspense>
   )
