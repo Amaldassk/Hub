@@ -26,6 +26,14 @@ export const signInUser = createAsyncThunk("auth/signin", async(formData)=>{
                 "Content-Type":"application/json",
             }
         });
+        const { user, accessToken, refreshToken, accessTokenUpdatedAt } = res.data;
+        const profile = {
+            user,
+            accessToken,
+            refreshToken,
+            accessTokenUpdatedAt,
+        };
+        localStorage.setItem("profile", JSON.stringify(profile));
         return res.data;
     } catch(err){
         return handleApiError(err);

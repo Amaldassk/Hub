@@ -3,7 +3,6 @@ import getCurrentContextData from "../../utils/contextData.js";
 
 const saveLogInfo = async(req, message, type, level) => {
     try{
-        console.log('dddddddddddddddddddddddddddddddddddd')
         let context = null;
         if(req){
             const { ip, country, city, browser, platform, os, device, deviceType } = getCurrentContextData(req);

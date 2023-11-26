@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import appStore from './redux/appStore';
 
 const AppContainer = () => {
+
   return (
     <>
       <Provider store={appStore}>

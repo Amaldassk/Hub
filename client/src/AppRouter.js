@@ -1,14 +1,32 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import SignIn from './pages/SignIn'
 import PrivateRoutes from './PrivateRoutes'
 import { privateRoutes, publicRoutes } from './routes'
 import FallbackLoading from './components/loader/FallbackLoading'
 import SignUp from './pages/SignUp'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserData } from './redux/slice/authSlice'
 
 const AppRouter = () => {
 
-  const userData = false;
+  const userData = useSelector(state=>state.auth?.userData);
+  const dispatch = useDispatch();
+  
+  const initializeAuth = () => {
+    const accessToken = JSON.parse(localStorage.getItem("profile"))?.accessToken;
+    console.log(accessToken);
+    if (accessToken) {
+        dispatch(setUserData(JSON.parse(localStorage.getItem("profile")).user));
+      } else {
+        //await dispatch(refreshTokenAction(refreshToken));
+      }
+  };
+  
+    useEffect(()=>{
+      initializeAuth();
+    },[]);
+  
 
   return (
     <Suspense fallback={<FallbackLoading/>}>

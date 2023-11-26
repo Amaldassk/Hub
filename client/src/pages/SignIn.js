@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonLoadingSpinner from "../components/loader/ButtonLoadingSpinner";
 import { signInUser } from '../redux/actions/authActions';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("arya@gmail.com");
+  const [password, setPassword] = useState("arya123");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const userData = useSelector(state=>state.auth?.userData);
+  useEffect(() => {
+    if (userData) {
+      navigate('/')
+    }
+  }, [navigate, userData])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,6 +35,7 @@ const SignIn = () => {
     await dispatch(signInUser(formData));
     setLoading(false);
     clearTimeout(timeout);
+    navigate("/");
   };
 
   return (
