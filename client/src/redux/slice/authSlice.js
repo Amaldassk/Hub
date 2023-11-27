@@ -34,7 +34,9 @@ const authSlice = createSlice({
             state.refreshToken = null;
             state.signInError = null;
             state.successMessage = null;
-        }
+            console.log('logout slice');
+           // localStorage.removeItem("profile");
+        },
     },
     extraReducers:{
         // [registerUser.fulfilled]: (state, action) => {
