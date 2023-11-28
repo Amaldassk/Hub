@@ -28,14 +28,13 @@ const authSlice = createSlice({
         setUserData:(state, action) => {
             state.userData = action.payload ? action.payload : null;
         },
-        logout:(state) => {
+        logoutUser:(state, action) => {
             state.userData = null;
             state.accessToken = null;
             state.refreshToken = null;
             state.signInError = null;
             state.successMessage = null;
-            console.log('logout slice');
-           // localStorage.removeItem("profile");
+           localStorage.removeItem("profile");
         },
     },
     extraReducers:{
@@ -52,6 +51,6 @@ const authSlice = createSlice({
     }
 });
 
-export const {setUserData, logout} = authSlice.actions;
+export const {setUserData, logoutUser} = authSlice.actions;
 
 export default authSlice.reducer;

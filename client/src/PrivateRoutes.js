@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import Navbar from './components/shared/Navbar'
-import { logout } from './redux/slice/authSlice';
+import { logoutUser } from './redux/slice/authSlice';
 import { useDispatch } from 'react-redux';
 
 const PrivateRoutes = ({userData}) => {
@@ -20,11 +20,10 @@ const PrivateRoutes = ({userData}) => {
 
     useEffect(() => {
         if (!isAuthenticated(userData, accessToken)) {
-          dispatch(logout());
-          console.log('signin')
+          dispatch(logoutUser());
           navigate("/signin");
         }
-      }, [dispatch, navigate, userData, accessToken, isAuthenticated]);
+      }, [isAuthenticated]);
 
     return isAuthenticated(userData, accessToken) ? (
     <div className="scroll-smooth">

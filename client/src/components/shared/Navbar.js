@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 // import logo from '../../assets/adfyn.png'
 import { Link } from 'react-router-dom'
-import { logout } from '../../redux/slice/authSlice';
+import { logoutUser } from '../../redux/slice/authSlice';
 
 const Navbar = () => {
 
@@ -11,9 +11,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = async() => {
-    console.log('loggggggg');
     setLoggingOut(true);
-    //await dispatch(logout());
+    await dispatch(logoutUser());
     setLoggingOut(false);
   }
 
