@@ -51,12 +51,12 @@ const Navbar = ({userData}) => {
                       className="mb-2 h-16 w-16 rounded-full object-cover"
                     />
                     <div className="text-sm font-semibold text-gray-700 hover:underline">
-                      <Link to={`/profile`}>{userData.name}</Link>
+                      <Link to={`/profile`} onClick={handleProfileClick}>{userData.name}</Link>
                     </div>
                     <div className="text-sm text-gray-500">{userData.email}</div>
                   </div>
                 </div>
-                <hr className="my-2" />
+                <hr className="mt-2" />
                 <div className="flex justify-center">
                   <button type="button" className="block w-full px-4 py-2  text-left text-sm text-red-400 hover:cursor-pointer hover:text-red-600" role="menuitem"
                     onClick={()=>logoutHandler()} disabled={loggingOut}>Logout</button>
