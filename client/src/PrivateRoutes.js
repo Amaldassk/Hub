@@ -27,7 +27,7 @@ const PrivateRoutes = ({userData}) => {
 
     return isAuthenticated(userData, accessToken) ? (
     <div className="scroll-smooth">
-        <Navbar/>
+        <Navbar userData={userData}/>
         <Outlet/>
     </div>
     ) : (<Navigate to="/signin"/>)
