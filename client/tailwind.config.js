@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        ksC1 : '#ff7618',
+        ksC2 : '#015198',
+      }
+    },
     fontFamily: {
       ksN: ['Nunito', 'sans-serif'],
       ksA: ['Anton', 'sans-serif'],
