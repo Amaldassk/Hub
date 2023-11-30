@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
-// import logo from '../../assets/adfyn.png'
+import logo from '../../assets/logo-ks.png'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../../redux/slice/authSlice';
 import {Transition} from '@headlessui/react';
@@ -28,10 +28,9 @@ const Navbar = ({userData}) => {
   useHandleOutsideClick(dropdownRef,()=>setShowDropdown(false));
 
   return (
-    <nav className="sticky top-0 z-20 mb-5 flex justify-center gap-10 border bg-white p-2 md:items-center md:justify-between md:px-36">
+    <nav className="sticky top-0 z-20 flex justify-center gap-10 border bg-white p-3 md:items-center md:justify-between md:px-36">
         <Link to='/' className="hidden md:inline-block">
-          <h3>Adfyn</h3>
-            {/* <img className="w-36" src={logo} alt='adfyn'/> */}
+          <img className="w-52" src={logo} alt='ks industries'/>
         </Link>
         <div className="relative flex justify-end md:w-36">
           <button type="button" className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full" onClick={handleProfileClick}>

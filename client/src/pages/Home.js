@@ -1,8 +1,11 @@
 import React from 'react'
+import MainSection from '../components/home/MainSection'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='main-section'>
+      <MainSection/>
+    </div>
   )
 }
 

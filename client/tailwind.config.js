@@ -5,6 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      ksN: ['Nunito', 'sans-serif'],
+      ksA: ['Anton', 'sans-serif'],
+      ksR: ['Roboto', 'sans-serif'],
+    },
   },
   plugins: [],
 }

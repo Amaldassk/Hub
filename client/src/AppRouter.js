@@ -11,22 +11,6 @@ import { setUserData } from './redux/slice/authSlice'
 const AppRouter = () => {
 
   const userData = useSelector(state=>state.auth?.userData);
-  const dispatch = useDispatch();
-  
-  // const initializeAuth = () => {
-  //   const accessToken = JSON.parse(localStorage.getItem("profile"))?.accessToken;
-  //   console.log(accessToken);
-  //   if (accessToken) {
-  //       dispatch(setUserData(JSON.parse(localStorage.getItem("profile")).user));
-  //     } else {
-  //       //await dispatch(refreshTokenAction(refreshToken));
-  //     }
-  // };
-  
-  //   useEffect(()=>{
-  //     initializeAuth();
-  //   },[]);
-  
 
   return (
     <Suspense fallback={<FallbackLoading/>}>
