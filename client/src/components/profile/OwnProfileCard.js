@@ -19,7 +19,7 @@ const OwnProfileCard = ({user}) => {
     }
 
     return(
-        <div className="rounded-md border bg-white p-6">
+        <div className="rounded-md border bg-white p-6 basis-6/12">
             <div className="flex cursor-pointer justify-end text-xl" onClick={handleOpenModal}>
                 <Tooltip text="Edit profile"><CiEdit /></Tooltip>
             </div>

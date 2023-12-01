@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../redux/actions/userActions";
 import CommonLoading from "../loader/CommonLoading";
 import OwnProfileCard from "./OwnProfileCard";
+import ProductEditCard from "./ProductEditCard";
 
 const UserProfile = ({userData}) => {
 
@@ -25,7 +26,12 @@ const UserProfile = ({userData}) => {
                     <CommonLoading />
                 </div>
             ):(
-                <OwnProfileCard user={user}/>
+                <>
+                    <div className="flex w-full">
+                        <OwnProfileCard user={user}/>
+                        <ProductEditCard/>
+                    </div>
+                </>
             )}
         </>
     )
