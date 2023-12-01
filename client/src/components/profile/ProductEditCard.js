@@ -21,7 +21,7 @@ const ProductEditCard = () => {
 
                     <div>
                         <div className="text-sm font-semibold text-gray-700 hover:underline">
-                            <Link onClick={handleOpenModal}>Add Product</Link>
+                            <Link to="/profile/products">Products</Link>
                             <AddProductModal isOpen={isModalOpen} onClose={handleCloseModal}/>
                         </div>
                     </div>

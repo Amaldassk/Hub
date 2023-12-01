@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/productActions";
 import {useForm} from 'react-hook-form';
 import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
+import {toast} from 'react-hot-toast';
 
 const AddProductModal = ({isOpen, onClose}) => {
 
@@ -160,7 +161,7 @@ const AddProductModal = ({isOpen, onClose}) => {
                                 ? "cursor-not-allowed bg-gray-400"
                                 : "bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             }`} onClick={handleSubmit(handleProductSave)}>
-                                {isSaving ? ( <ButtonLoadingSpinner loadingText={"Updating..."}/>):(<span>Save</span>)}
+                                {isSaving ? ( <ButtonLoadingSpinner loadingText={"Saving..."}/>):(<span>Save</span>)}
                             </button>
                             <button type="button" className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm" onClick={onClose}>
                                 Cancel

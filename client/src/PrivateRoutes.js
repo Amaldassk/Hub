@@ -3,6 +3,7 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import Navbar from './components/shared/Navbar'
 import { logoutUser } from './redux/slice/authSlice';
 import { useDispatch } from 'react-redux';
+import { Toaster } from "react-hot-toast";
 
 const PrivateRoutes = ({userData}) => {
 
@@ -29,6 +30,7 @@ const PrivateRoutes = ({userData}) => {
     <div className="scroll-smooth">
         <Navbar userData={userData}/>
         <Outlet/>
+        <Toaster position="bottom-center" />
     </div>
     ) : (<Navigate to="/signin"/>)
 }

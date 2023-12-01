@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getProducts } from "../actions/productActions";
 
 const initailState = {
-    products:[],
+    productsList:[],
 }
 
 const productSlice = createSlice({
@@ -13,7 +13,8 @@ const productSlice = createSlice({
     },
     extraReducers:{
         [getProducts.fulfilled]:(state,action) => {
-            state.products = action.payload ? action.payload : null;
+            action.payload ? state.productsList.push(action.payload): null;
+            console.log('product', state);
         }
     }
 });
