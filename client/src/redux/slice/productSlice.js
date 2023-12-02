@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "../actions/productActions";
+import { deleteProduct, getProducts } from "../actions/productActions";
 
 const initailState = {
     productsList:[],
@@ -14,7 +14,9 @@ const productSlice = createSlice({
     extraReducers:{
         [getProducts.fulfilled]:(state,action) => {
             action.payload ? state.productsList.push(action.payload): null;
-            console.log('product', state);
+        },
+        [deleteProduct.fulfilled]:(state, action) => {
+
         }
     }
 });

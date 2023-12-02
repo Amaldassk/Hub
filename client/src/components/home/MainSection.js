@@ -1,16 +1,11 @@
 import { useEffect } from "react";
 import BannerSection from "./BannerSection";
 import ProductsSection from "./ProductsSection";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../../redux/actions/productActions";
+import useProducts from "../../hooks/useProducts";
 
 const MainSection = () => {
-
-    const dispatch = useDispatch();
-
-    useEffect(()=>{
-        dispatch(getProducts());
-    },[]);
+ 
+    useProducts();
 
     return(
         <>

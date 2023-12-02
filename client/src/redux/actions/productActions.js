@@ -31,3 +31,19 @@ export const addProduct = createAsyncThunk('api/product', async(formData)=>{
         return handleApiError(err);
     }
 });
+
+
+export const deleteProduct = createAsyncThunk("api/deleteProduct", async(id)=>{
+    try{
+        const res= API.delete("api/product", id, {
+            headers:{
+                "Content-Type":"application/json",
+            }
+        });
+        toast.success("Product deleted successfully");
+        return res.data;
+    } catch(err){
+        toast.error("Some error occured..please try again");
+        return handleApiError(err);
+    }
+});
