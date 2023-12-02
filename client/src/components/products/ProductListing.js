@@ -10,7 +10,6 @@ const ProductListing = () => {
     const [productId, setProductId] = useState('');
 
     const products = useSelector(state=>state.product?.productsList);
-    console.log(products,"ppppppppppppppppppppp");
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
