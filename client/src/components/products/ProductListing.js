@@ -7,11 +7,18 @@ import DeleteProductmodal from '../modals/DeleteProductmodal';
 const ProductListing = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [productId, setProductId] = useState('');
 
     const products = useSelector(state=>state.product?.productsList);
+    console.log(products,"ppppppppppppppppppppp");
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+    }
+
+    const handleDeleteClick = (id) => {
+        setProductId(id);
+        setIsModalOpen(true);
     }
 
   if(!products) return <CommonLoading/>
@@ -32,7 +39,7 @@ const ProductListing = () => {
                 </tr>
             </thead>
             <tbody className="bg-white dark:bg-slate-800">
-                {products[0] && products[0].map((product,i)=>{
+                {products && products.map((product,i)=>{
                     return(
                         <tr key={product._id}>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><img className="h-10 w-10 rounded-md object-cover" src={product.images[0]} alt=""/></td>
@@ -43,8 +50,8 @@ const ProductListing = () => {
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.price}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.size}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                <MdOutlineDeleteForever className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>setIsModalOpen(!isModalOpen)}/>
-                                <DeleteProductmodal isOpen={isModalOpen} onClose={handleCloseModal} productId={product._id}/>
+                                <MdOutlineDeleteForever className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleDeleteClick(product._id)}/>
+                                <DeleteProductmodal isOpen={isModalOpen} onClose={handleCloseModal} productId={productId}/>
                             </td>
                         </tr>
                     )

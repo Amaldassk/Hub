@@ -1,15 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
+import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
+import { deleteProduct } from "../../redux/actions/productActions";
 
 const DeleteProductmodal = ({isOpen, onClose, productId}) => {
 
     const [isDeleting, setIsDeleting] = useState(false);
     const dispatch = useDispatch();
 
-    const handleDeleteProduct = async(productId) => {
+    const handleDeleteProduct = async() => {
         setIsDeleting(true);
-        await dispatch(deleteProduct(id));
+        await dispatch(deleteProduct(productId));
         setIsDeleting(false);
     }
 

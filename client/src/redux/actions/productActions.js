@@ -35,11 +35,15 @@ export const addProduct = createAsyncThunk('api/product', async(formData)=>{
 
 export const deleteProduct = createAsyncThunk("api/deleteProduct", async(id)=>{
     try{
-        const res= API.delete("api/product", id, {
+        const data = {id:id};
+        console.log(data);
+
+        const res = await API.delete(`api/product/${id}`, data, {
             headers:{
-                "Content-Type":"application/json",
+                'Content-Type':'application/json',
             }
         });
+
         toast.success("Product deleted successfully");
         return res.data;
     } catch(err){
