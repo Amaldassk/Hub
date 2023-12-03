@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API, handleApiError } from "../api/utils";
 import {toast} from 'react-hot-toast';
 
-export const getProducts = createAsyncThunk('api/product', async()=>{
+export const getProducts = createAsyncThunk('api/getProducts', async()=>{
     try{
         const res = await API.get("api/product");
         return res.data;
