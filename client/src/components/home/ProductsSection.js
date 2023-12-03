@@ -13,7 +13,7 @@ const ProductsSection = () => {
                 <h3 className="uppercase text-4xl text-ksC2">Current top<br/> sellers</h3>
             </div>
             <div className="grid grid-cols-3 gap-3 pb-20">
-                {products[0] && products[0].map((product,i)=>{
+                {products && products.map((product,i)=>{
                     return(
                         <ProductCard productData={product}/>
                     )

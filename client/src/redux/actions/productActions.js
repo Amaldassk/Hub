@@ -11,7 +11,7 @@ export const getProducts = createAsyncThunk('api/product', async()=>{
     }
 });
 
-export const addProduct = createAsyncThunk('api/product', async(formData)=>{
+export const addProduct = createAsyncThunk('api/addProduct', async(formData)=>{
     try{
         const {productTitle:productName,productSize:size,productGauge:gauge,productColor:color,productMaterial:material,productCoated:powderCoated,productPrice:price} = formData;
         
@@ -25,7 +25,7 @@ export const addProduct = createAsyncThunk('api/product', async(formData)=>{
             }
         });
         toast.success("Product added successfully");
-        return {error:null, data: res.data};
+        return res.data.newProduct;
     } catch(err){
         toast.error("Some error occured..please try again");
         return handleApiError(err);
@@ -35,14 +35,8 @@ export const addProduct = createAsyncThunk('api/product', async(formData)=>{
 
 export const deleteProduct = createAsyncThunk("api/deleteProduct", async(id)=>{
     try{
-        const data = {id:id};
-        console.log(data);
 
-        const res = await API.delete(`api/product/${id}`, data, {
-            headers:{
-                'Content-Type':'application/json',
-            }
-        });
+        const res = await API.delete(`api/product/${id}`);
 
         toast.success("Product deleted successfully");
         return res.data;

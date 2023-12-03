@@ -1,18 +1,7 @@
 import { useState } from "react";
-import AddProductModal from "../modals/AddProductModal";
 import { Link } from "react-router-dom";
 
 const ProductEditCard = () => {
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    }
 
     return (
         <div className="rounded-md border bg-white p-6 basis-6/12">
@@ -22,7 +11,6 @@ const ProductEditCard = () => {
                     <div>
                         <div className="text-sm font-semibold text-gray-700 hover:underline">
                             <Link to="/profile/products">Products</Link>
-                            <AddProductModal isOpen={isModalOpen} onClose={handleCloseModal}/>
                         </div>
                     </div>
                 </div>

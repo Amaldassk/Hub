@@ -41,7 +41,7 @@ const ProductListing = () => {
                 {products && products.map((product,i)=>{
                     return(
                         <tr key={product._id}>
-                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><img className="h-10 w-10 rounded-md object-cover" src={product.images[0]} alt=""/></td>
+                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><img className="h-10 w-10 rounded-md object-cover" src={product?.images[0]} alt=""/></td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.productName}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.gauge}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.powderCoated}</td>

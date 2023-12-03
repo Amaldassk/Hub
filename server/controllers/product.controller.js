@@ -26,7 +26,8 @@ const createProduct = async(req, res) => {
         }
 
         res.status(201).json({
-            message:'Product added successfully'+fileUrl
+            message:'Product added successfully'+fileUrl,
+            newProduct
         });
         // const newProduct = await productModel.create(req.body);
         //res.status(201).json(newP);
