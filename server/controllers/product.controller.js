@@ -66,10 +66,10 @@ const deleteProduct = async(req, res) => {
     }
 }
 
-const updateProduct = async() => {
-    const {id} = req.body;
+const updateProduct = async(req, res) => {
+    const id = req.params.id;
     try{
-        const updateProduct = await productModel.findByIdAndUpdate(id. req.body,{new:true});
+        const updateProduct = await productModel.findByIdAndUpdate(id, req.body,{new:true});
         res.json(updateProduct);
     } catch(err){
         throw new Error(err);

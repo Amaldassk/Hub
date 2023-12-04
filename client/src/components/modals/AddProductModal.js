@@ -21,7 +21,6 @@ const AddProductModal = ({isOpen, onClose}) => {
     const {register, formState:{errors}, handleSubmit} = useForm({mode:'all'});
 
     const handleProductSave = async(data) => {
-        console.log('data', data);
         setIsSaving(true);
 
         await dispatch(addProduct(data));

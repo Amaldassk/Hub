@@ -11,6 +11,16 @@ export const getProducts = createAsyncThunk('api/getProducts', async()=>{
     }
 });
 
+export const getProduct = createAsyncThunk('api/getProduct', async(id)=>{
+    console.log('testttt');
+    try{
+        const res = await API.get(`api/product/${id}`);
+        return res.data;
+    } catch(err){
+        handleApiError(err);
+    }
+});
+
 export const addProduct = createAsyncThunk('api/addProduct', async(formData)=>{
     try{
         const {productTitle:productName,productSize:size,productGauge:gauge,productColor:color,productMaterial:material,productCoated:powderCoated,productPrice:price} = formData;
@@ -45,3 +55,24 @@ export const deleteProduct = createAsyncThunk("api/deleteProduct", async(id)=>{
         return handleApiError(err);
     }
 });
+
+export const updateProduct = createAsyncThunk("api/updateProduct", async(formData)=>{
+    try{
+        const {productTitle:productName,productSize:size,productGauge:gauge,productColor:color,productMaterial:material,productCoated:powderCoated,productPrice:price} = formData;
+        
+        const data = {
+            productName,size,gauge,color,material,powderCoated,price
+        }
+
+        const res = await API.put(`api/product/${formData.productId}`, data, {
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        toast.success("Product updated successfully");
+        return res.data;
+    } catch(err){
+        toast.error("Some error occured..please try again");
+        return handleApiError(err);
+    }
+})

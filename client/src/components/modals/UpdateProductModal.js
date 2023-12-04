@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { PiSubtitlesLight } from "react-icons/pi";
 import { IoResizeOutline } from "react-icons/io5";
 import { LuGauge } from "react-icons/lu";
@@ -8,24 +8,48 @@ import { LiaDrumSteelpanSolid } from "react-icons/lia";
 import { GiPowder } from "react-icons/gi";
 import { IoPricetagOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-
-import {useForm} from 'react-hook-form';
+import {Controller, useForm} from 'react-hook-form';
 import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
+import Select from "react-select";
+import { updateProduct } from "../../redux/actions/productActions";
 
-const UpdateProductModal = ({isOpen, onClose}) => {
+const UpdateProductModal = ({isOpen, onClose, productData, productId}) => {
+
+    const {payload} = productData;
+    const {productName:productTitle, size:productSize, gauge:productGauge, color:productColor, material:productMaterial, powderCoated:productCoated, price:productPrice} = payload;
+    const data ={
+        productTitle, productSize, productGauge, productColor, productMaterial, productCoated, productPrice, productId
+    }
 
     const [isSaving, setIsSaving] = useState(false);
+    const dialogRef = useRef(null);
 
-    const {register, formState:{errors}, handleSubmit} = useForm({mode:'all'});
+    const {reset, register, formState:{errors}, handleSubmit, control} = useForm({mode:'all'});
 
-    const handleProductUpdate = () => {
+    const dispatch = useDispatch();
+
+    const handleProductUpdate = async(data) => {
         setIsSaving(true);
+
+        await dispatch(updateProduct(data));
+        setIsSaving(false);
         onClose();
     }
 
+    useEffect(()=>{
+        defaultValues = data;
+        reset({ ...defaultValues });
+    },[]);
+
+    // const selectOptions = [
+    //     { value: "student", label: "Student" },
+    //     { value: "developer", label: "Developer" },
+    //     { value: "manager", label: "Manager" }
+    //   ];
+
     return(
         <Transition.Root show={isOpen} as={Fragment}>
-            <Dialog as="div" className="fixed inset-0 z-50 text-center font-ksN" static onClose={()=>{}}>
+            <Dialog as="div"  initialFocus={dialogRef} className="fixed inset-0 z-50 text-center font-ksN" static onClose={()=>{}}>
                 <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                     <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30"/>
                 </Transition.Child>
@@ -42,9 +66,11 @@ const UpdateProductModal = ({isOpen, onClose}) => {
                                         <label className="block text-sm font-medium text-gray-500">Title</label>
                                     </div>
                                     <input
+                                        name="productName"
                                         {...register("productTitle",{
                                             required:"Product title is required"
                                         })}
+                                        defaultChecked={productData.productName}
                                     type="text" className="mt-1 block w-full rounded-md border border-gray-300 p-1 outline-none" />
                                     <p className="text-ksC1 text-xs mt-1">{errors.productTitle?.message}</p>
                                 </div>
@@ -114,15 +140,20 @@ const UpdateProductModal = ({isOpen, onClose}) => {
                                         <GiPowder className="text-gray-600" />
                                         <label className="block text-sm font-medium text-gray-500">Powder Coated</label>
                                     </div>
+                                    {/* <Controller name="productCoated" control={control} defaultValue="" rules={{required:"Product powdercoated is required"}}
+                                        render={({field})=>(
+                                            <Select options={selectOptions} {...field} label="Text field"/>
+                                        )}
+                                    /> */}
                                     <select
                                         {...register("productCoated",{
                                             required:"Product powdercoated is required",
                                         })}
                                     className="mt-1 block w-full rounded-md border border-gray-300 p-1 outline-none">
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                        <option value={true}>Yes</option>
+                                        <option value={false}>No</option>
                                     </select>
-                                    <p className="text-ksC1 text-xs">{errors.productCoated?.message}</p>
+                                    <p className="text-ksC1 text-xs">{errors?.productCoated && errors.productCoated?.message}</p>
                                 </div>
                                 <div className="mt-4">
                                     <div className="flex items-center space-x-2">

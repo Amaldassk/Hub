@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CommonLoading from '../loader/CommonLoading';
 import { MdOutlineDeleteForever } from "react-icons/md";
 import DeleteProductmodal from '../modals/DeleteProductmodal';
 import { RiEdit2Line } from "react-icons/ri";
 import UpdateProductModal from '../modals/UpdateProductModal';
+import { getProduct } from '../../redux/actions/productActions';
 
 const ProductListing = () => {
 
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [productId, setProductId] = useState('');
+    const [productData, setProductData] = useState(null);
 
     const products = useSelector(state=>state.product?.productsList);
+    const dispatch = useDispatch();
 
     const handleDeleteCloseModal = () => {
         setIsDeleteModalOpen(false);
@@ -27,8 +30,10 @@ const ProductListing = () => {
         setIsDeleteModalOpen(true);
     }
 
-    const handleUpdate = (id) => {
+    const handleUpdate = async(id) => {
         setProductId(id);
+        const data = await dispatch(getProduct(id));
+        setProductData(data);
         setIsUpdateModalOpen(true);
     }
 
@@ -57,17 +62,17 @@ const ProductListing = () => {
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><img className="h-10 w-10 rounded-md object-cover" src={product?.images[0]} alt=""/></td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.productName}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.gauge}</td>
-                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.powderCoated}</td>
+                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.powderCoated === true ? "Yes" : "No"}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.color}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.price}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.size}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
                                 <RiEdit2Line className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleUpdate(product._id)}/>
-                                <UpdateProductModal isOpen={isUpdateModalOpen} onClose={handleUpdateCloseModal}/>
+                                {isUpdateModalOpen && <UpdateProductModal isOpen={isUpdateModalOpen} onClose={handleUpdateCloseModal} productData={productData} productId={productId}/>}
                             </td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
                                 <MdOutlineDeleteForever className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleDelete(product._id)}/>
-                                <DeleteProductmodal isOpen={isDeleteModalOpen} onClose={handleDeleteCloseModal} productId={productId}/>
+                                {isDeleteModalOpen && <DeleteProductmodal isOpen={isDeleteModalOpen} onClose={handleDeleteCloseModal} productId={productId}/>}
                             </td>
                         </tr>
                     )

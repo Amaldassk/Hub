@@ -1,5 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { addProduct, deleteProduct, getProducts } from "../actions/productActions";
+import { addProduct, deleteProduct, getProducts, updateProduct } from "../actions/productActions";
 
 const initailState = {
     productsList:null,
@@ -23,7 +23,16 @@ const productSlice = createSlice({
         [deleteProduct.fulfilled]:(state, action) => {
            const updatedProducts = state.productsList.filter((item)=>item._id !== action.payload._id);
            state.productsList = updatedProducts;
-        }
+        },
+        [updateProduct.fulfilled]:(state, action) => {
+            const updatedProducts = state.productsList.map((item)=>{
+                if(item._id == action.payload._id){
+                    item = action.payload;
+                }
+                return item;
+            });
+            state.productsList = updatedProducts;
+        },
     }
 });
 
