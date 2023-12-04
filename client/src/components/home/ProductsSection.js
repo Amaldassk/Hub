@@ -15,7 +15,7 @@ const ProductsSection = () => {
             <div className="grid grid-cols-3 gap-3 pb-20">
                 {products && products.map((product,i)=>{
                     return(
-                        <ProductCard productData={product}/>
+                        <ProductCard productData={product} key={product._id}/>
                     )
                 })}
             </div>

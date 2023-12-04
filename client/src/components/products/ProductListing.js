@@ -3,21 +3,33 @@ import { useSelector } from 'react-redux';
 import CommonLoading from '../loader/CommonLoading';
 import { MdOutlineDeleteForever } from "react-icons/md";
 import DeleteProductmodal from '../modals/DeleteProductmodal';
+import { RiEdit2Line } from "react-icons/ri";
+import UpdateProductModal from '../modals/UpdateProductModal';
 
 const ProductListing = () => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [productId, setProductId] = useState('');
 
     const products = useSelector(state=>state.product?.productsList);
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
+    const handleDeleteCloseModal = () => {
+        setIsDeleteModalOpen(false);
     }
 
-    const handleDeleteClick = (id) => {
+    const handleUpdateCloseModal = () => {
+        setIsUpdateModalOpen(false);
+    }
+
+    const handleDelete = (id) => {
         setProductId(id);
-        setIsModalOpen(true);
+        setIsDeleteModalOpen(true);
+    }
+
+    const handleUpdate = (id) => {
+        setProductId(id);
+        setIsUpdateModalOpen(true);
     }
 
   if(!products) return <CommonLoading/>
@@ -35,6 +47,7 @@ const ProductListing = () => {
                     <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-2 pb-3 text-slate-400 dark:text-slate-200 text-left">Price</th>
                     <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-2 pb-3 text-slate-400 dark:text-slate-200 text-left">Size</th>
                     <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-2 pb-3 text-slate-400 dark:text-slate-200 text-left"></th>
+                    <th className="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-2 pb-3 text-slate-400 dark:text-slate-200 text-left"></th>
                 </tr>
             </thead>
             <tbody className="bg-white dark:bg-slate-800">
@@ -49,8 +62,12 @@ const ProductListing = () => {
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.price}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{product.size}</td>
                             <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
-                                <MdOutlineDeleteForever className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleDeleteClick(product._id)}/>
-                                <DeleteProductmodal isOpen={isModalOpen} onClose={handleCloseModal} productId={productId}/>
+                                <RiEdit2Line className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleUpdate(product._id)}/>
+                                <UpdateProductModal isOpen={isUpdateModalOpen} onClose={handleUpdateCloseModal}/>
+                            </td>
+                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
+                                <MdOutlineDeleteForever className='cursor-pointer hover:text-blue-500 text-lg' onClick={()=>handleDelete(product._id)}/>
+                                <DeleteProductmodal isOpen={isDeleteModalOpen} onClose={handleDeleteCloseModal} productId={productId}/>
                             </td>
                         </tr>
                     )

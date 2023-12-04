@@ -8,30 +8,24 @@ import { LiaDrumSteelpanSolid } from "react-icons/lia";
 import { GiPowder } from "react-icons/gi";
 import { IoPricetagOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/actions/productActions";
+
 import {useForm} from 'react-hook-form';
 import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
 
-const AddProductModal = ({isOpen, onClose}) => {
+const UpdateProductModal = ({isOpen, onClose}) => {
 
     const [isSaving, setIsSaving] = useState(false);
 
-    const dispatch = useDispatch();
-
     const {register, formState:{errors}, handleSubmit} = useForm({mode:'all'});
 
-    const handleProductSave = async(data) => {
-        console.log('data', data);
+    const handleProductUpdate = () => {
         setIsSaving(true);
-
-        await dispatch(addProduct(data));
-        setIsSaving(false);
         onClose();
     }
 
     return(
         <Transition.Root show={isOpen} as={Fragment}>
-            <Dialog as="div" className="fixed inset-0 z-50 text-center font-ksN" onClose={()=>{}}>
+            <Dialog as="div" className="fixed inset-0 z-50 text-center font-ksN" static onClose={()=>{}}>
                 <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                     <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30"/>
                 </Transition.Child>
@@ -40,7 +34,7 @@ const AddProductModal = ({isOpen, onClose}) => {
                     <div className="inline-block w-full transform overflow-hidden rounded-md bg-white px-4 pb-4 pt-5 text-left align-bottom shadow-xl transition-all sm:my-8 sm:p-6 sm:align-middle md:max-w-xl">
                         <div className="w-full">
                             <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">Add a new Product</Dialog.Title>
+                                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">Update Product</Dialog.Title>
                                 <hr className="mt-3"/>
                                 <div className="mt-4">
                                     <div className="flex items-center space-x-2">
@@ -152,8 +146,8 @@ const AddProductModal = ({isOpen, onClose}) => {
                                 isSaving
                                 ? "cursor-not-allowed bg-gray-400"
                                 : "bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            }`} onClick={handleSubmit(handleProductSave)}>
-                                {isSaving ? ( <ButtonLoadingSpinner loadingText={"Saving..."}/>):(<span>Save</span>)}
+                            }`} onClick={handleSubmit(handleProductUpdate)}>
+                                {isSaving ? ( <ButtonLoadingSpinner loadingText={"Updating..."}/>):(<span>Update</span>)}
                             </button>
                             <button type="button" className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm" onClick={onClose}>
                                 Cancel
@@ -166,4 +160,4 @@ const AddProductModal = ({isOpen, onClose}) => {
     )
 }
 
-export default AddProductModal;
+export default UpdateProductModal;
