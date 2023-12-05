@@ -5,15 +5,22 @@ import { PiChatText } from "react-icons/pi";
 import ButtonLoadingSpinner from "../loader/ButtonLoadingSpinner";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { sendMessage } from "../../redux/actions/emailActions";
 
 const ContactSection = () => {
 
     const [isSending, setIsSending] = useState(false);
+    const dispatch = useDispatch();
 
-    const {register, formState:{errors}, handleSubmit} = useForm({mode:'all'});
+    const {register, formState:{errors}, handleSubmit, reset} = useForm({mode:'all'});
 
-    const handleMessageSend = (data) => {
-        console.log(data);
+    const handleMessageSend = async(data) => {
+        console.log("dataaaa",data);
+        setIsSending(true);
+        await dispatch(sendMessage(data));
+        setIsSending(false);
+        reset();
     }
 
     return(

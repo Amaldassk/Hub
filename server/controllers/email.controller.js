@@ -4,7 +4,6 @@ import emailModel from '../models/email.model.js';
 const sendMessage = async(req, res) => {
 
     const {name, email, phone, message} = req.body;
-    console.log(name, email, phone, message);
 
     try{
         let transporter = nodemailer.createTransport({
@@ -33,7 +32,7 @@ const sendMessage = async(req, res) => {
         await newMessage.save();
 
         res.status(200).json({
-            message:"Enquiry message was sent sucessfully"
+            message:"Enquiry message was sent successfully"
         });
     } catch(err){
         console.log(err);
