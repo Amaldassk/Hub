@@ -16,7 +16,6 @@ const ContactSection = () => {
     const {register, formState:{errors}, handleSubmit, reset} = useForm({mode:'all'});
 
     const handleMessageSend = async(data) => {
-        console.log("dataaaa",data);
         setIsSending(true);
         await dispatch(sendMessage(data));
         setIsSending(false);
