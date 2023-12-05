@@ -13,7 +13,6 @@ const ContactSection = () => {
     const {register, formState:{errors}, handleSubmit} = useForm({mode:'all'});
 
     const handleMessageSend = (data) => {
-        //event.preventDefault();
         console.log(data);
     }
 

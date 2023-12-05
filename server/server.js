@@ -9,6 +9,7 @@ import authRoute from './routes/auth.route.js'
 import Database from './config/dbConnect.js'
 import userRoute from './routes/user.route.js'
 import productRoute from './routes/product.route.js'
+import emailRoute from './routes/email.route.js'
 
 const PORT = process.env.PORT || 3500;
 
@@ -28,6 +29,7 @@ app.use(upload.none());
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/product', productRoute);
+app.use('/api/message', emailRoute);
 
 app.listen(PORT,()=>{
     console.log(`Server listening to port:${PORT}`);
