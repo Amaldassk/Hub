@@ -8,6 +8,7 @@ module.exports = {
       colors:{
         ksC1 : '#ff7618',
         ksC2 : '#015198',
+        ksC3 : '#015198',
       }
     },
     fontFamily: {

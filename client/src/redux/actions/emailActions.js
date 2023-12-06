@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API, handleApiError } from "../api/utils";
+import {toast} from 'react-hot-toast';
 
 export const sendMessage = createAsyncThunk('api/send', async(formData)=>{
     try{
@@ -15,7 +16,7 @@ export const sendMessage = createAsyncThunk('api/send', async(formData)=>{
                 "Content-Type":"application/json",
             }
         });
-        toast.success("Enquiry message was sent successfully");
+        toast.success("Enquiry message was sent successfully...");
         return res.data;
 
     } catch(err){
