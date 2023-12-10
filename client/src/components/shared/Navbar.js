@@ -82,14 +82,14 @@ const Navbar = ({userData}) => {
               </div>
             </div>
         </div>
-        <div className='w-full p-3 md:px-10'>
+        <div className='w-full p-3 flex justify-between md:px-10'>
           <Link to='/' className="hidden md:inline-block">
             <img className="w-52" src={logo} alt='ks industries'/>
           </Link>
           <div className="relative flex justify-end md:w-36">
-            <ul>
-              <li>Products</li>
-              <li>Contact Us</li>
+            <ul className='flex'>
+              <li className='text-white mx-1 whitespace-nowrap'>Products</li>
+              <li className='text-white mx-1 whitespace-nowrap'>Contact Us</li>
             </ul>
           </div>
         </div>
