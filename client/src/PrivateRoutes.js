@@ -4,6 +4,7 @@ import Navbar from './components/shared/Navbar'
 import { logoutUser } from './redux/slice/authSlice';
 import { useDispatch } from 'react-redux';
 import { Toaster } from "react-hot-toast";
+import Footer from './components/shared/Footer';
 
 const PrivateRoutes = ({userData}) => {
 
@@ -31,6 +32,7 @@ const PrivateRoutes = ({userData}) => {
         <Navbar userData={userData}/>
         <Outlet/>
         <Toaster position="bottom-center" />
+        <Footer/>
     </div>
     ) : (<Navigate to="/signin"/>)
 }

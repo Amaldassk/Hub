@@ -8,6 +8,7 @@ import useHandleOutsideClick from '../../hooks/useHandleOutsideClick';
 import { ImLocation2 } from "react-icons/im";
 import { IoIosMail } from "react-icons/io";
 import { MdPhoneEnabled } from "react-icons/md";
+import useHeaderScroll from '../../hooks/useHeaderScroll';
 
 const Navbar = ({userData}) => {
 
@@ -17,6 +18,9 @@ const Navbar = ({userData}) => {
   const dropdownRef = useRef(null);
 
   const dispatch = useDispatch();
+
+  const headerFixed = useHeaderScroll();
+  console.log(headerFixed,"headerFixed");
 
   const logoutHandler = async() => {
     setLoggingOut(true);
@@ -31,22 +35,22 @@ const Navbar = ({userData}) => {
   useHandleOutsideClick(dropdownRef,()=>setShowDropdown(false));
 
   return (
-    <nav className="fixed w-full font-ksN top-0 z-20 flex justify-center flex-wrap bg-transparent md:items-center md:justify-between ">
-        <div className="grid grid-cols-12 gap-4 w-full p-3 border-b border-[rgb(255,255,255)]/20 md:px-10">
+    <nav className={`fixed w-full font-ksN top-0 z-20 flex justify-center flex-wrap md:items-center md:justify-between ${headerFixed ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+        <div className={`grid grid-cols-12 gap-4 w-full p-3 border-b md:px-10 ${headerFixed ? 'border-[rgb(0,0,0)]/20' : 'border-[rgb(255,255,255)]/20'}`}>
             <div className="col-span-6 flex justify-around">
               <div className='flex justify-center items-center'>
                 <ImLocation2 className='text-ksC3 mr-1'/>
-                <p className='text-white text-base'>Thundathumkadavu, Varapuzha P O, Kochi</p>
+                <p className={`text-base ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Thundathumkadavu, Varapuzha P O, Kochi</p>
               </div>
               <div className='flex justify-center items-center'>
                 <IoIosMail className='text-ksC3 mr-1'/>
-                <p className='text-white text-base'>info@ksindustries.com</p>
+                <p className={`text-base ${headerFixed ? 'text-ksC5' : 'text-white'}`}>info@ksindustries.com</p>
               </div>
             </div>
             <div className="col-span-6 flex justify-around">
               <div className='flex justify-center items-center'>
                 <MdPhoneEnabled className='text-ksC3 mr-1'/>
-                <p className='text-white text-base'>+1 234 056 78 90</p>
+                <p className={`text-base ${headerFixed ? 'text-ksC5' : 'text-white'}`}>+1 234 056 78 90</p>
               </div>
               <div className='flex justify-center items-center'>
                 <button type="button" className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full" onClick={handleProfileClick}>
@@ -88,8 +92,8 @@ const Navbar = ({userData}) => {
           </Link>
           <div className="relative flex justify-end md:w-36">
             <ul className='flex'>
-              <li className='text-white mx-1 whitespace-nowrap'>Products</li>
-              <li className='text-white mx-1 whitespace-nowrap'>Contact Us</li>
+              <li className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Products</li>
+              <li className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Contact Us</li>
             </ul>
           </div>
         </div>
