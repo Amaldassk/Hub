@@ -11,7 +11,10 @@ module.exports = {
         ksC3 : '#015198',
         ksC4 : '#303849',
         ksC5 : '#303849',
-      }
+      },
+      backgroundImage: theme => ({
+        'contact-banner': "url('/src/assets/contact.jpg')",
+      }),
     },
     fontFamily: {
       ksN: ['Nunito', 'sans-serif'],

@@ -5,7 +5,7 @@ const ProductCard = ({productData}) => {
     return(
         <div className="prod-card flex relative">
             <div>
-                <img src="https://manufaktursolutions.qodeinteractive.com/wp-content/uploads/2022/10/home-7-product-list-img-03.jpg" alt="test"/>
+                <img src="https://indusri.wpengine.com/wp-content/uploads/2023/08/shop-11.1.webp" alt="test"/>
             </div>
             <div className="absolute bottom-5 left-5">
                 <div className="flex items-center mb-3">

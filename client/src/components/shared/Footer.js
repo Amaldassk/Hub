@@ -18,7 +18,7 @@ const Footer = () => {
                 <div className="col-span-4">
                     <ul className="">
                         <li className="mb-4">
-                            <p className="text-white text-3xl opacity-30 mb-7">Contact Us</p>
+                            <p className="text-white text-3xl opacity-40 mb-7">Contact Us</p>
                         </li>
                         <li className='flex justify-start items-center py-3 border-b border-t border-[rgb(255,255,255)]/20'>
                             <ImLocation2 className='text-white mr-2'/>
