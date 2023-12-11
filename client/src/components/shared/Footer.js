@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo-ks.png'
+import logo from '../../assets/logo-ks-white.png'
 import { ImLocation2 } from "react-icons/im";
 import { IoIosMail } from "react-icons/io";
 import { MdPhoneEnabled } from "react-icons/md";
 
 const Footer = () => {
     return(
-        <footer className="">
-            <div className="container mx-auto px-4 grid grid-cols-12 bg-ksC2 py-10">
-                <div className="col-span-3"></div>
-                <div className="col-span-3">
+        <footer className="font-ksN">
+            <div className="container mx-auto px-4 grid grid-cols-12 bg-ksC2 py-16">
+                <div className="col-span-2"></div>
+                <div className="col-span-4 flex flex-wrap">
                     <Link to='/' className="hidden md:inline-block">
                         <img className="w-52" src={logo} alt='ks industries'/>
                     </Link>
+                    <p className="mt-2 text-white pr-7">Established since 1989, Paper and packaging works has become one of the most respected structural, miscellaneous, and ornamental paper fabricators serving the Southern California multi-unit, commercial, and residential</p>
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-4">
                     <ul className="">
                         <li className="mb-4">
                             <p className="text-white text-3xl opacity-30 mb-7">Contact Us</p>
@@ -33,6 +34,7 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
+                <div className="col-span-2"></div>
             </div>
             <div className="flex justify-center items-center">
                 <p className="py-2 text-ksC5">© Copyright K.S Industries</p>
