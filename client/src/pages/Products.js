@@ -12,7 +12,7 @@ const Products = () => {
   return (
     <>
         <ProductBanner/>
-        <div className="container mx-auto px-4 grid grid-cols-4 gap-3 pb-10">
+        <div className="container mx-auto px-4 grid grid-cols-4 gap-3 pb-10 pt-8 bg-white">
             {products && products.map((product,i)=>{
                 return(
                     <ProductCard productData={product} key={product._id}/>

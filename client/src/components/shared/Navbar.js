@@ -37,7 +37,7 @@ const Navbar = ({userData}) => {
   return (
     <nav className={`fixed w-full font-ksN top-0 z-20 flex justify-center flex-wrap md:items-center md:justify-between ${headerFixed ? 'bg-[rgb(255,255,255)]/95 shadow-lg' : 'bg-transparent'}`}>
         <div className={`grid grid-cols-12 gap-4 w-full p-3 border-b md:px-10 ${headerFixed ? 'border-[rgb(0,0,0)]/20' : 'border-[rgb(255,255,255)]/20'}`}>
-            <div className="col-span-6 flex justify-around">
+            <div className="col-span-6 flex justify-between">
               <div className='flex justify-center items-center'>
                 <ImLocation2 className='text-ksC3 mr-1'/>
                 <p className={`text-base ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Thundathumkadavu, Varapuzha P O, Kochi</p>
