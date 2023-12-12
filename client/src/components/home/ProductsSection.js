@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import ProductCard from "../shared/ProductCard";
+import { Link } from "react-router-dom";
 
 const ProductsSection = () => {
 
     const productsLists = useSelector(state=>state.product?.productsList);
     const products = productsLists?.slice(0,4);
-    console.log("products section",products);
 
     return(
         <>
@@ -24,9 +24,9 @@ const ProductsSection = () => {
                 
             </div>
             <div className="w-full text-center">
-                <button type="submit" className="bg-ksC2 inline-flex w-full min-w-[200] justify-center rounded-sm border border-transparent px-4 py-4 text-base outline-none mb-10 font-medium text-white shadow-sm focus:outline-none sm:w-auto sm:text-sm">
+                <Link to="/products"><button type="submit" className="bg-ksC2 inline-flex w-full min-w-[200] justify-center rounded-sm border border-transparent px-4 py-4 text-base outline-none mb-10 font-medium text-white shadow-sm hover:bg-blue-600 focus:outline-none sm:w-auto sm:text-sm">
                     <span>View More</span>
-                </button>
+                </button></Link>
             </div>
         </div>
         </>

@@ -1,5 +1,6 @@
 import ProductDashboard from './components/products/ProductDashboard';
 import Home from './pages/Home'
+import Products from './pages/Products';
 import Profile from './pages/Profile'
 import SignUp from './pages/SignUp'
 
@@ -15,6 +16,10 @@ export const privateRoutes = [
     {
         path:"/profile/products",
         element:<ProductDashboard/>
+    },
+    {
+        path:"/products",
+        element:<Products/>
     }
 ];
 
