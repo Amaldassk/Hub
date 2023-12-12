@@ -37,7 +37,7 @@ const Footer = () => {
                 <div className="col-span-2"></div>
             </div>
             <div className="flex justify-center items-center">
-                <p className="py-2 text-ksC5">© Copyright K.S Industries</p>
+                <p className="py-4 text-ksC5">© Copyright K.S Industries</p>
             </div>
         </footer>
     )
