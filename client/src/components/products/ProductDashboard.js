@@ -5,6 +5,7 @@ import useProducts from "../../hooks/useProducts";
 import ProductListing from "./ProductListing";
 import AddProductModal from "../modals/AddProductModal";
 import { useState } from "react";
+import ProductBanner from "./ProductBanner";
 
 const ProductDashboard = () => {
 
@@ -21,6 +22,8 @@ const ProductDashboard = () => {
     useProducts();
 
     return(
+        <>
+        <ProductBanner title="Add Products" mainthread="Home / Profile" thread="Products"/>
         <div className="container mx-auto px-4">
             <div className="flex justify-between my-2 p-2 items-center mt-3">
                 <h3 className="text-xl">Products</h3>
@@ -29,6 +32,7 @@ const ProductDashboard = () => {
             </div>
             <ProductListing/>
         </div>
+        </>
     )
 }
 

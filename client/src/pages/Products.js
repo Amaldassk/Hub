@@ -11,7 +11,7 @@ const Products = () => {
 
   return (
     <>
-        <ProductBanner/>
+        <ProductBanner title="Our Products" mainthread="Home" thread="Products"/>
         <div className="container mx-auto px-4 grid grid-cols-4 gap-3 pb-10 pt-8 bg-white">
             {products && products.map((product,i)=>{
                 return(
