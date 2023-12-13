@@ -31,9 +31,9 @@ const ContactSection = () => {
                 </div>
                 <div className="col-span-7 px-12">
                     <div className="pt-20 pb-10 relative">
-                        <h5 className="text-4xl text-ksC2 font-bold">Request A Quote?</h5>
+                        <h5 className="text-4xl text-ksC2 font-bold">Request <span className="text-ksC6">A Quote?</span></h5>
                         <h3 className="text-base tracking-widest mt-4">GOT A QUESTION?</h3>
-                        <span className="absolute bottom-6 -left-1 border-b border-[rgb(0,0,0)]/20 w-[10%]"></span>
+                        <span className="absolute bottom-6 -left-1 border-b border-[#4B91F1] w-[10%]"></span>
                     </div>
                     <div className="pb-20">
                         <form onSubmit={handleSubmit(handleMessageSend)}>

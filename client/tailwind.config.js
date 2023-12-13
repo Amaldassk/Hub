@@ -7,10 +7,11 @@ module.exports = {
     extend: {
       colors:{
         ksC1 : '#ff7618',
-        ksC2 : '#015198',
-        ksC3 : '#015198',
+        ksC2 : '#010C80',
+        ksC3 : '#010C80',
         ksC4 : '#303849',
         ksC5 : '#303849',
+        ksC6 : '#4B91F1',
       },
       backgroundImage: theme => ({
         'contact-banner': "url('/src/assets/contact.jpg')",
