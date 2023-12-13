@@ -37,7 +37,8 @@ function fileUpload(req, res, next){
         },
     });
 
-    upload.any()(req, res, (err)=>{
+    upload.single('productImage')(req, res, (err)=>{
+
         if(err){
             return res.status(500).json({
                 success: false,
@@ -46,17 +47,16 @@ function fileUpload(req, res, next){
             });
         }
 
-        if(!req.files || req.files.length === 0){
+        if(!req.file || req.file.length === 0){
             return next();
         }
 
-        const file = req.files[0];
+        const file = req.file;
         const fileUrl = `${req.protocol}://${req.get("host")}/assets/userFiles/${file.filename}`;
 
         req.file = file;
         req.fileUrl = fileUrl;
         req.fileType = file.mimetype.split("/")[0];
-
         next();
     })
 }

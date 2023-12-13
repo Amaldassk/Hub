@@ -23,15 +23,20 @@ export const getProduct = createAsyncThunk('api/getProduct', async(id)=>{
 
 export const addProduct = createAsyncThunk('api/addProduct', async(formData)=>{
     try{
-        const {productTitle:productName,productSize:size,productGauge:gauge,productColor:color,productMaterial:material,productCoated:powderCoated,productPrice:price} = formData;
+        const {productTitle:productName,productSize:size,productGauge:gauge,productImage:images,productColor:color,productMaterial:material,productCoated:powderCoated,productPrice:price} = formData;
         
         const data = {
             productName,size,gauge,color,material,powderCoated,price
         }
+        console.log(data,'hhhhh',images[0]);
+        const formDatas = new FormData();
+        formDatas.append('productDetails',JSON.stringify(data));
+        formDatas.append('productImage', images[0]);
+        console.log(formDatas);
 
-        const res = await API.post("api/product", data, {
+        const res = await API.post("api/product", formDatas, {
             headers:{
-                'Content-Type':'application/json',
+                'Content-Type':'multipart/form-data',
             }
         });
         toast.success("Product added successfully");

@@ -22,7 +22,7 @@ const AddProductModal = ({isOpen, onClose}) => {
 
     const handleProductSave = async(data) => {
         setIsSaving(true);
-
+        console.log('data', data);
         await dispatch(addProduct(data));
         setIsSaving(false);
         onClose();
@@ -77,13 +77,18 @@ const AddProductModal = ({isOpen, onClose}) => {
                                     type="text" className="mt-1 block w-full rounded-md border border-gray-300 p-1 outline-none" />
                                     <p className="text-ksC1 text-xs">{errors.productGauge?.message}</p>
                                 </div>
-                                {/* <div className="mt-4">
+                                <div className="mt-4">
                                     <div className="flex items-center space-x-2">
                                         <LuGauge className="text-gray-600" />
-                                        <label className="block text-sm font-medium text-gray-500">Gauge</label>
+                                        <label className="block text-sm font-medium text-gray-500">Image</label>
                                     </div>
-                                    <input type="text" className="mt-1 block w-full rounded-md border-b border-gray-300 p-2 outline-none" value={gauge} onChange={(e) => setGauge(e.target.value)}/>
-                                </div> */}
+                                    <input 
+                                        {...register("productImage",{
+                                            required:"Product image is required"
+                                        })}
+                                    type="file" accept="image/*" className="mt-1 block w-full rounded-md border-b border-gray-300 p-2 outline-none"/>
+                                    <p className="text-ksC1 text-xs">{errors.productImage?.message}</p>
+                                </div>
                                 <div className="mt-4">
                                     <div className="flex items-center space-x-2">
                                         <MdOutlineColorLens className="text-gray-600" />

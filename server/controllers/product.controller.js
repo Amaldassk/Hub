@@ -6,8 +6,7 @@ const createProduct = async(req, res) => {
 
     try{
         const { userId, file, fileUrl, fileType } = req;
-        console.log("fileUrl",fileUrl);
-        const {productName, size, gauge, color, material, powderCoated, price} = req.body;
+        const {productName, size, gauge, color, material, powderCoated, price} = JSON.parse(req.body.productDetails);
 
         let newProduct = new productModel({
             productName: productName,
