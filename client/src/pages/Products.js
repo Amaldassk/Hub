@@ -12,7 +12,7 @@ const Products = () => {
   return (
     <>
         <ProductBanner title="Our Products" mainthread="Home" thread="Products"/>
-        <div className="container mx-auto px-4 grid grid-cols-4 gap-3 pb-10 pt-8 bg-white">
+        <div className="container mx-auto px-4 grid grid-cols-4 gap-3 pb-10 pt-8 bg-white mt-14">
             {products && products.map((product,i)=>{
                 return(
                     <ProductCard productData={product} key={product._id}/>
