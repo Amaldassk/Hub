@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import logo from '../../assets/logo-ks.png'
+import logoWhite from '../../assets/logo-ks-white.png'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../../redux/slice/authSlice';
 import {Transition} from '@headlessui/react';
@@ -88,12 +89,12 @@ const Navbar = ({userData}) => {
         </div>
         <div className='w-full p-3 flex justify-between md:px-10'>
           <Link to='/' className="hidden md:inline-block">
-            <img className="w-52" src={logo} alt='ks industries'/>
+            <img className="w-52" src={`${headerFixed ? logo : logoWhite}`} alt='ks industries'/>
           </Link>
           <div className="relative flex justify-end md:w-36">
             <ul className='flex'>
-              <li className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Products</li>
-              <li className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Contact Us</li>
+              <Link to="/products" className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Products</Link>
+              <Link to="/contact" className={`mx-1 whitespace-nowrap px-1 cursor-pointer ${headerFixed ? 'text-ksC5' : 'text-white'}`}>Contact Us</Link>
             </ul>
           </div>
         </div>

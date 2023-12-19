@@ -24,7 +24,7 @@ const ContactSection = () => {
     }
 
     return(
-        <div className="container mx-auto">
+        <div className="mx-auto">
             <div className="grid grid-cols-12">
                 <div className="col-span-5 bg-contact-banner bg-center bg-no-repeat bg-cover">
                     <img src={Contact} alt="Contact" className="hidden"/> 

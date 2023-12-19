@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
     },
     color:{
         type:String,
-        enum:["red","white","olive green","purple","blue"],
+        enum:["red","white","olive green","purple","blue","black"],
         default:"olive green",
         required:true,
     },
@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
     },
     material:{
         type: String,
-        enum:["plywood","steel"],
+        enum:["plywood","steel","metal"],
         default:"",
         required:true,
     },

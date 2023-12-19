@@ -104,6 +104,7 @@ const AddProductModal = ({isOpen, onClose}) => {
                                         <option value="olive green">Olive Green</option>
                                         <option value="purple">Purple</option>
                                         <option value="blue">Blue</option>
+                                        <option value="black">Black</option>
                                     </select>
                                     <p className="text-ksC1 text-xs">{errors.productColor?.message}</p>
                                 </div>

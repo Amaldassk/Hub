@@ -7,7 +7,7 @@ import { MdPhoneEnabled } from "react-icons/md";
 const Footer = () => {
     return(
         <footer className="font-ksN">
-            <div className="container mx-auto px-4 grid grid-cols-12 bg-ksC2 py-16">
+            <div className="mx-auto px-4 grid grid-cols-12 bg-ksC2 py-16">
                 <div className="col-span-2"></div>
                 <div className="col-span-4 flex flex-wrap">
                     <Link to='/' className="hidden md:inline-block">

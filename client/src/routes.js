@@ -1,4 +1,5 @@
 import ProductDashboard from './components/products/ProductDashboard';
+import ContactUs from './pages/ContactUs';
 import Home from './pages/Home'
 import Products from './pages/Products';
 import Profile from './pages/Profile'
@@ -20,6 +21,10 @@ export const privateRoutes = [
     {
         path:"/products",
         element:<Products/>
+    },
+    {
+        path:"/contact",
+        element:<ContactUs/>
     }
 ];
 
