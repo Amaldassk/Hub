@@ -73,7 +73,11 @@ const ContactSection = () => {
                                     </div>
                                     <input
                                         {...register("contactPhone",{
-                                            required:"Please fill out phone field"
+                                            required:"Please fill out phone field",
+                                            pattern: {
+                                                value:/^[6-9]\d{9}$/,
+                                                message: "Not a valid phone no"
+                                            }
                                         })}
                                     type="text" placeholder="Phone" className="mt-1 block w-full rounded-sm border border-gray-300 p-1 outline-none h-[50] indent-7" />
                                     <p className="text-ksC1 text-xs mt-1">{errors.contactPhone?.message}</p>
