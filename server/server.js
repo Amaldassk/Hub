@@ -33,6 +33,10 @@ app.use('/api/auth', authRoute);
 app.use('/api/product', productRoute);
 app.use('/api/message', emailRoute);
 
+app.get("/",(req, res)=>{
+    return res.json({message:"listening"})
+});
+
 app.listen(PORT,()=>{
     console.log(`Server listening to port:${PORT}`);
 });
